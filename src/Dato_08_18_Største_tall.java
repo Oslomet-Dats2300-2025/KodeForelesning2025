@@ -2,9 +2,12 @@ import java.util.Arrays;
 
 public class Dato_08_18_Største_tall {
     public static void main(String[] args) {
-        int[] tabell = {1, 2, 27, 1, 3, 7, 13, -5, 7, 2, 9};
+        long tic = System.currentTimeMillis();
+        int[] tabell = EkstraFunksjoner.randPerm(1000000);
         int maks = maks_løkke(tabell);
-        System.out.println(maks);
+        System.out.println("Største tall i tabellen er " + maks + ".");
+        long toc = System.currentTimeMillis();
+        System.out.println("Metoden tok " + (toc - tic) + " millisekund.");
     }
 
     public static int maks_sorterer(int[] tabell) {
