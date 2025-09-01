@@ -51,8 +51,8 @@ public class Dato_08_27_Sortering {
     }
 
     public static void bobleSorter(int[] tabell) {
-        for (int i = 1; i < tabell.length; i++) {
-            for (int j = i; j < tabell.length; j++) {
+        for (int i = tabell.length - 1; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
                 if (tabell[j-1] > tabell[j]) { // fant en inversjon
                     bytt(tabell, j-1, j);
                 }
