@@ -17,4 +17,18 @@ public class EkstraFunksjoner {
         tabell[i] = tabell[j];
         tabell[j] = tmp;
     }
+
+    public static boolean nestePermutasjon(int[] a) {
+        int n = a.length;
+        int i = n - 2;
+        while (i >= 0 && a[i] > a[i+1]) i--;
+        if (i < 0) return false;
+        int verdi = a[i];
+        int j = n - 1;
+        while (verdi > a[j]) j--;
+        bytt(a, i, j);
+        i++; j = n-1;
+        while (i < j) bytt(a, i++, j--);
+        return true;
+    }
 }

@@ -16,8 +16,21 @@ public class Dato_09_01_Partisjonering_Quicksort {
         parterPåVerdi(tallTabell, 0, tallTabell.length - 1);
         System.out.println(Arrays.toString(tallTabell));
         int[] tilfeldigListe = EkstraFunksjoner.randPerm(10);
-        kvikkSort(tilfeldigListe);
         System.out.println(Arrays.toString(tilfeldigListe));
+        kvikkSorter(tilfeldigListe);
+        System.out.println(Arrays.toString(tilfeldigListe));
+
+        // Tester at vi faktisk sorterer, ved å teste *alle* tabeller på 10 element.
+        int[] tiTabell = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] svar = tiTabell.clone();
+        do {
+            int[] c = tiTabell.clone();
+            kvikkSorter(c);
+            if (!Arrays.equals(c, svar)) {
+                System.out.println("Fikk gal sortering på tabell " + Arrays.toString(tiTabell) + ". Fikk " + Arrays.toString(c));
+            }
+
+        } while (EkstraFunksjoner.nestePermutasjon(tiTabell));
     }
 
     public static boolean erVokal(char a) {
@@ -57,7 +70,7 @@ public class Dato_09_01_Partisjonering_Quicksort {
         int v = fra;
         int h = til-1;
         int pivot = tabell[til];
-        while (v < h) {
+        while (true) {
             while (v <= h && tabell[v] < pivot)
                 v++;
             while (v <= h && tabell[h] >= pivot)
@@ -69,15 +82,15 @@ public class Dato_09_01_Partisjonering_Quicksort {
         return v;
     }
 
-    public static void kvikkSort(int[] tabell, int fra, int til) {
+    public static void kvikkSorter(int[] tabell, int fra, int til) {
         if (til - fra <= 0)
             return;
         int k = parterPåVerdi(tabell, fra, til);
-        kvikkSort(tabell, fra, k-1);
-        kvikkSort(tabell, k+1, til);
+        kvikkSorter(tabell, fra, k-1);
+        kvikkSorter(tabell, k+1, til);
     }
 
-    public static void kvikkSort(int[] tabell) {
-        kvikkSort(tabell, 0, tabell.length-1);
+    public static void kvikkSorter(int[] tabell) {
+        kvikkSorter(tabell, 0, tabell.length-1);
     }
 }
