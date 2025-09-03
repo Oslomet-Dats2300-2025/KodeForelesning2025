@@ -43,14 +43,14 @@ public class Dato_09_01_Partisjonering_Quicksort {
     }
 
     public static void parterVokal(char[] tabell) {
-        int v = 0;
-        int h = tabell.length - 1;
-        while (v < h) {
-            while (v < h && erVokal(tabell[v]))
-                v++;
-            while (v < h && !erVokal(tabell[h]))
-                h--;
-            bytt(tabell, v++, h--);
+        int venstre = 0;
+        int høyre = tabell.length - 1;
+        while (venstre < høyre) {
+            while (venstre < høyre && erVokal(tabell[venstre]))
+                venstre++;
+            while (venstre < høyre && !erVokal(tabell[høyre]))
+                høyre--;
+            bytt(tabell, venstre++, høyre--);
         }
     }
 
@@ -66,20 +66,29 @@ public class Dato_09_01_Partisjonering_Quicksort {
         tabell[j] = tmp;
     }
 
+    /*
+    Grunnen til <= i denne varianten og if-test som avbryter er at vi
+    må passe på at metoden *alltid* avslutter med at "venstre" peker
+    på første verdi som er større enn eller lik pivot.
+
+    Om vi hadde gjort som forrige ville vi noen ganger pekt på siste
+    verdi som er mindre enn pivot, og måtte sjekka for dette i
+    kvikkSorter-metoden.
+     */
     public static int parterPåVerdi(int[] tabell, int fra, int til) {
-        int v = fra;
-        int h = til-1;
+        int venstre = fra;
+        int høyre = til-1;
         int pivot = tabell[til];
         while (true) {
-            while (v <= h && tabell[v] < pivot)
-                v++;
-            while (v <= h && tabell[h] >= pivot)
-                h--;
-            if (v > h) break;
-            bytt(tabell, v++, h--);
+            while (venstre <= høyre && tabell[venstre] < pivot)
+                venstre++;
+            while (venstre <= høyre && tabell[høyre] >= pivot)
+                høyre--;
+            if (venstre > høyre) break;
+            bytt(tabell, venstre++, høyre--);
         }
-        bytt(tabell, v, til);
-        return v;
+        bytt(tabell, venstre, til);
+        return venstre;
     }
 
     public static void kvikkSorter(int[] tabell, int fra, int til) {
