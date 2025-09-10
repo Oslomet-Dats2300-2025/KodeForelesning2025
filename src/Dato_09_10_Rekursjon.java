@@ -3,11 +3,10 @@ import java.util.Arrays;
 public class Dato_09_10_Rekursjon {
     static int trekk = 1;
     public static void main(String[] args) {
-        //hanoisTårn(3, 'C', 'A', 'B');
+        hanoisTårn(3, 'C', 'A', 'B');
 
-        int[] tab = {2, 3, 5, 10, 1, 7, 8, 9, 8, 4};
-        kvikkSorter(tab);
-
+        // Sjekker at nye quicksort fremdeles gir rett svar på alle
+        // tabeller med 10 element.
         int[] tiTabell = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int[] svar = tiTabell.clone();
         do {
@@ -83,7 +82,7 @@ public class Dato_09_10_Rekursjon {
         }
     }
 
-    public static void kvikkSorterRekursiv(int[] tabell) {
+    public static void kvikkSorterLittRekursiv(int[] tabell) {
         kvikkSorterLittRekursiv(tabell, 0, tabell.length-1);
     }
 }
