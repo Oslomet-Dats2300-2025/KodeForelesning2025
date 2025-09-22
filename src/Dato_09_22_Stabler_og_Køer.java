@@ -434,7 +434,9 @@ class TabellListeSomKø<T> implements Kø<T> {
             throw new NoSuchElementException("Tom kø.");
         }
         antall--;
-        return tabell[start++];
+        T tmp = tabell[start];
+        start = (start + 1) % kapasitet;
+        return tmp;
     }
 
     @Override
