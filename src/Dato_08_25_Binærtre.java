@@ -1,6 +1,6 @@
 public class Dato_08_25_Binærtre {
     public static void main(String[] args) {
-        Binærtre bt = new Binærtre();
+        Binærtre_gammel bt = new Binærtre_gammel();
         bt.rot = new Node(25);
         bt.rot.venstre = new Node(7);
         bt.rot.høyre = new Node(41);
@@ -26,10 +26,10 @@ class Node {
     }
 }
 
-class Binærtre {
+class Binærtre_gammel {
     Node rot;
 
-    public Binærtre() {
+    public Binærtre_gammel() {
         this.rot = null;
     }
 
