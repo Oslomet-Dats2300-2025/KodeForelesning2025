@@ -17,12 +17,14 @@ interface Stabel<T> {
     void push(T t);
     T pop();
     T peek();
+    boolean tom();
 }
 
 interface Kø<T> {
     void enqueue(T t);
     T dequeue();
     T peek();
+    boolean tom();
 }
 
 
@@ -392,6 +394,11 @@ class LenketListeSomKø<T> implements Kø<T> {
             throw new NoSuchElementException("Tom kø");
         return hode.verdi;
     }
+
+    @Override
+    public boolean tom() {
+        return (hode == null);
+    }
 }
 
 class TabellListeSomKø<T> implements Kø<T> {
@@ -442,5 +449,10 @@ class TabellListeSomKø<T> implements Kø<T> {
     @Override
     public T peek() {
         return tabell[start];
+    }
+
+    @Override
+    public boolean tom() {
+        return (antall == 0);
     }
 }
