@@ -185,8 +185,6 @@ class TabellListeSomStabel<T> implements Liste<T>, Iterable<T>, Stabel<T> {
 class LenketListeSomStabel<T> implements Liste<T>, Iterable<T>, Stabel<T> {
     @Override
     public void push(T t) {
-        if (tom())
-            throw new NoSuchElementException("Tom Stabel");
         leggInn(t);
     }
 

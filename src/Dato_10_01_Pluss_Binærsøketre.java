@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -9,6 +10,9 @@ public class Dato_10_01_Pluss_Binærsøketre {
         for (int i : a) bst.leggInn(i);
         System.out.println(bst.antall());
         System.out.println(bst);
+
+        for (Integer i : bst)
+            System.out.println("Verdien er: " + i);
 
         Binærsøketre<Integer> rbst = new Binærsøketre<>(Comparator.reverseOrder());
         for (int i : a) rbst.leggInn(i);
@@ -24,7 +28,46 @@ public class Dato_10_01_Pluss_Binærsøketre {
     }
 }
 
-class Binærsøketre<T> implements Beholder<T> {
+class Binærsøketre<T> implements Beholder<T>, Iterable<T> {
+
+    @Override
+    public Iterator<T> iterator() {
+        return new InordenIterator();
+    }
+
+    private class InordenIterator implements Iterator<T> {
+        Node<T> denne;
+        Stabel<Node<T>> nodeStabel;
+        public InordenIterator() {
+            denne = rot;
+            nodeStabel = new LenketListeSomStabel<>();
+            while (denne.venstre != null) {
+                nodeStabel.push(denne);
+                denne = denne.venstre;
+            }
+        }
+        @Override
+        public boolean hasNext() {
+            return (denne != null);
+        }
+        @Override
+        public T next() {
+            T tmp = denne.verdi;
+            if (denne.høyre != null) {
+                denne = denne.høyre;
+                while (denne.venstre != null) {
+                    nodeStabel.push(denne);
+                    denne = denne.venstre;
+                }
+            } else {
+                if (!nodeStabel.tom())
+                    denne = nodeStabel.pop();
+                else
+                    denne = null;
+            }
+            return tmp;
+        }
+    }
 
     private static final class NodePar<T> {
         Node<T> current, forelder;

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 interface Beholder<T> {
     boolean leggInn(T t);
     boolean fjern(T t);
@@ -57,6 +59,10 @@ class TabellListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T t) {
         return false;
+    }
+
+    public String toString() {
+        return Arrays.toString(tabell);
     }
 
     @Override
