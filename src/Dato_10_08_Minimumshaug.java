@@ -49,6 +49,11 @@ class Minimumshaug<T> implements Beholder<T> {
         return false;
     }
 
+    public T fjern() {
+        // Denne burde gi ut minste verdi. Burde bruke denne, og ikke `fjern(t)`.
+        return null;
+    }
+
     @Override
     public int antall() {
         return treListe.antall() - 1;
